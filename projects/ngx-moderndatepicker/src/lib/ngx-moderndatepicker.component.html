@@ -1,0 +1,66 @@
+<div class="ngx-moderndatepicker-container">
+  <input type="text" *ngIf="!headless" class="ngx-moderndatepicker-input" [(ngModel)]="displayValue" readonly [placeholder]="placeholder"
+    [ngClass]="addClass" [ngStyle]="addStyle" [id]="fieldId" [disabled]="disabled" (click)="toggle()" />
+  <ng-content></ng-content>
+  <div class="ngx-moderndatepicker-calendar-container ngx-moderndatepicker-position-{{position}}" *ngIf="isOpened">
+    <div class="topbar-container">
+      <div class="main-calendar-selection-year">
+        <svg width="14px" height="14px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+  	       viewBox="0 0 489.6 489.6" style="enable-background:new 0 0 489.6 489.6;" xml:space="preserve"
+          (click)="view === 'year' && prevYear()">
+          <g>
+          	<g>
+          		<path style="fill:#2C2F33;" d="M244.8,489.6c135,0,244.8-109.8,244.8-244.8S379.8,0,244.8,0S0,109.8,0,244.8
+          			S109.8,489.6,244.8,489.6z M244.8,19.8c124.1,0,225,100.9,225,225s-100.9,225-225,225s-225-100.9-225-225S120.7,19.8,244.8,19.8z"
+          			/>
+          		<path style="fill:#3C92CA;" d="M265.5,326.1c1.9,1.9,4.5,2.9,7,2.9s5.1-1,7-2.9c3.9-3.9,3.9-10.1,0-14l-67.3-67.3l67.3-67.3
+          			c3.9-3.9,3.9-10.1,0-14s-10.1-3.9-14,0l-74.3,74.3c-3.9,3.9-3.9,10.1,0,14L265.5,326.1z"/>
+          	</g>
+          </g>
+        </svg>
+        <span class="topbar-title" (click)="toggleView(); initYears();">{{ barTitle }}</span>
+        <svg width="14px" height="14px" viewBox="0 0 6 10" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+  	       viewBox="0 0 489.6 489.6" style="enable-background:new 0 0 489.6 489.6;" xml:space="preserve"
+          (click)="view === 'year' && nextYear()">
+          <g>
+          	<g>
+          		<path style="fill:#2C2F33;" d="M244.8,489.6c135,0,244.8-109.8,244.8-244.8S379.8,0,244.8,0S0,109.8,0,244.8
+          			S109.8,489.6,244.8,489.6z M244.8,19.8c124.1,0,225,100.9,225,225s-100.9,225-225,225s-225-100.9-225-225S120.7,19.8,244.8,19.8z"
+          			/>
+          		<path style="fill:#3C92CA;" d="M210,326.1c1.9,1.9,4.5,2.9,7,2.9s5.1-1,7-2.9l74.3-74.3c1.9-1.9,2.9-4.4,2.9-7s-1-5.1-2.9-7
+          			L224,163.5c-3.9-3.9-10.1-3.9-14,0s-3.9,10.1,0,14l67.3,67.3L210,312.1C206.2,316,206.2,322.3,210,326.1z"/>
+          	</g>
+          </g>
+        </svg>
+      </div>
+      <div class="main-calendar-day-names" *ngIf="view === 'year'">
+        <span class="day-name-unit" *ngFor="let name of dayNames">{{ name }}</span>
+      </div>
+    </div>
+    <div class="main-calendar-container" *ngIf="view === 'year'">
+      <div class="main-calendar-month-names">
+        <div class="month-name-unit" *ngFor="let month of monthNames; let index = index" (click)="month.isSelectable && selectMonth(index)">
+          <span class="month-unit"
+            [ngClass]="{ 'is-this-month': month.isThisMonth, 'is-selected': month.isSelected, 'is-disabled': !month.isSelectable }">
+            {{ month.name }}
+          </span>
+        </div>
+      </div>
+      <div class="main-calender-days-container">
+        <div class="main-calendar-days">
+          <div class="day-unit" *ngFor="let day of days; let i = index;" >
+            <span [ngClass]="{ 'is-prev-month': !day.inThisMonth, 'is-today': day.isToday, 'is-selected': day.isSelected, 'is-disabled': !day.isSelectable, 'is-weekend': day.isWeekend , 'is-holiday' : day.isHoliday}"
+              (click)="day.isSelectable && setDate(i)">
+              {{ day.day }}
+            </span>
+          </div>
+        </div>
+       </div>
+      </div>
+    <div class="main-calendar-container" *ngIf="view === 'years'">
+      <div class="main-calendar-years">
+        <span class="year-unit" *ngFor="let year of years; let i = index;" [ngClass]="{ 'is-selected': year.isThisYear , 'is-today': year.isToday , 'is-disabled' : !year.isSelectable}" (click)="year.isSelectable && setYear(i)">{{ year.year }}</span>
+      </div>
+    </div>
+  </div>
+</div>

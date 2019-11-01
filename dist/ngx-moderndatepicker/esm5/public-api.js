@@ -1,0 +1,11 @@
+/**
+ * @fileoverview added by tsickle
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/*
+ * Public API Surface of ngx-moderndatepicker
+ */
+export { NgxModerndatepickerService } from './lib/ngx-moderndatepicker.service';
+export { NgxModerndatepickerComponent } from './lib/ngx-moderndatepicker.component';
+export { NgxModerndatepickerModule } from './lib/ngx-moderndatepicker.module';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljLWFwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL25neC1tb2Rlcm5kYXRlcGlja2VyLyIsInNvdXJjZXMiOlsicHVibGljLWFwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7O0FBSUEsMkNBQWMsb0NBQW9DLENBQUM7QUFDbkQsNkNBQWMsc0NBQXNDLENBQUM7QUFDckQsMENBQWMsbUNBQW1DLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuICogUHVibGljIEFQSSBTdXJmYWNlIG9mIG5neC1tb2Rlcm5kYXRlcGlja2VyXG4gKi9cblxuZXhwb3J0ICogZnJvbSAnLi9saWIvbmd4LW1vZGVybmRhdGVwaWNrZXIuc2VydmljZSc7XG5leHBvcnQgKiBmcm9tICcuL2xpYi9uZ3gtbW9kZXJuZGF0ZXBpY2tlci5jb21wb25lbnQnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvbmd4LW1vZGVybmRhdGVwaWNrZXIubW9kdWxlJztcbiJdfQ==
