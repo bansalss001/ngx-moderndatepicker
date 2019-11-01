@@ -24,4 +24,7 @@ export class AppComponent {
   constructor() {
     this.date = new Date();
   }
+  ngOnChanges(e){
+    console.log(e)
+  }
 }

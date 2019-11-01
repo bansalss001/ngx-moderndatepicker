@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng build ngx-moderndatepicker  --watch && ng serve -o",
-    "build": "ng build  ngx-moderndatepicker && ng build",
+    "start": "ng build ngx-moderndatepicker && ng serve -o",
+    "build": "ng build ngx-moderndatepicker && ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
