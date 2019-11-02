@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import * as enLocale from 'date-fns/locale/en';
 import { addDays, addYears, subYears, addMonths } from 'date-fns'
 
-import { DatepickerOptions } from 'ngx-moderndatepicker';
+import { ModernDatePickerOptions } from 'ngx-moderndatepicker';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ import { DatepickerOptions } from 'ngx-moderndatepicker';
 })
 export class AppComponent {
   title = 'ng-moderndatepicker-library';
-   options: DatepickerOptions  = {
+  options: ModernDatePickerOptions  = {
     locale: enLocale,
     weekendsDay : [0,6],
     holidayList : [new Date('11/01/2019'),new Date('11/15/2019')],

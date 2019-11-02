@@ -1,27 +1,77 @@
-# NgModerndatepickerLibrary
+# ng2-datepicker
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.6.
+Angular 6+ Simple and interactive calender datepicker component
 
-## Development server
+## Installation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. Install package from `npm`.
 
-## Code scaffolding
+```sh
+npm install ngx-moderndatepicker --save
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+2. Include NgModernDatepickerModule into your application.
 
-## Build
+```ts
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModernDatepickerModule } from 'ng2-datepicker';
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+@NgModule({
+  imports: [
+    BrowserModule,
+    NgModernDatepickerModule
+  ],
+  declarations: [ AppComponent ],
+  exports: [ AppComponent ]
+})
+export class AppModule {}
+```
 
-## Running unit tests
+## Example
+```html
+  <ngx-moderndatepicker [(ngModel)]="date" />
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Additional attributes
+|Name|Type|Default|Description|
+| --- | --- | --- | --- |
+|`headless`|boolean|`false`|Disable datepicker's input|
+|`isOpened`|boolean|`false`|Show or hide datepicker|
+|`position`|string|`bottom-right`|Dropdown position (`bottom-left`, `bottom-right`, `top-left`, `top-right`)|
 
-## Running end-to-end tests
+## Options
+```ts
+import { ModernDatePickerOptions } from 'ng2-datepicker';
+import * as frLocale from 'date-fns/locale/fr';
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+options: ModernDatePickerOptions = {
+  minYear: 1970,
+  maxYear: 2030,
+  displayFormat: 'MMM D[,] YYYY',
+  barTitleFormat: 'MMMM YYYY',
+  dayNamesFormat: 'dd',
+  firstCalendarDay: 0, // 0 - Sunday, 1 - Monday
+  locale: frLocale,
+  minDate: new Date(Date.now()), // Minimal selectable date
+  maxDate: new Date(Date.now()),  // Maximal selectable date
+  barTitleIfEmpty: 'Click to select a date',
+  placeholder: 'Click to select a date', // HTML input placeholder attribute (default: '')
+  addClass: 'form-control', // Optional, value to pass on to [ngClass] on the input field
+  addStyle: {}, // Optional, value to pass to [ngStyle] on the input field
+  fieldId: 'my-date-picker', // ID to assign to the input field. Defaults to datepicker-<counter>
+  useEmptyBarTitle: false, // Defaults to true. If set to false then barTitleIfEmpty will be disregarded and a date will always be shown
+   weekendsDay: [0,6],
+   /** Sunday is 0 , Highlights the weekends with gray background**/
+  holidayList: [new Date('12/25/2000'), new Date('01/01/2001')]
+  /** List of Holidays **/ 
+};
+```
 
-## Further help
+For available `format` options check out [here](https://date-fns.org/docs/format).
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+In case you want to initialize with an empty value, just assign null to the model attribute you're storing the date and you can customize the message in the bar with the property `barTitleIfEmpty`.
+
+## Licence
+
+MIT

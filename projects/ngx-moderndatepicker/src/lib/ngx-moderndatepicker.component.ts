@@ -1,10 +1,9 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, ElementRef, HostListener, forwardRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, HostListener, forwardRef, ElementRef } from '@angular/core';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
   startOfMonth,
   endOfMonth,
   addMonths,
-  subMonths,
   setYear,
   eachDay,
   getDate,
@@ -21,12 +20,11 @@ import {
   addYears,
   subYears,
   setMonth,
-  isWithinRange
 } from 'date-fns';
 
 export type AddClass = string | string[] | { [k: string]: boolean } | null;
 
-export interface DatepickerOptions {
+export interface ModernDatePickerOptions {
   minYear?: number; // default: current year - 30
   maxYear?: number; // default: current year + 30
   displayFormat?: string; // default: 'MMM D[,] YYYY'
@@ -61,7 +59,7 @@ let counter = 0;
  * Internal library helper that helps to check if value is empty
  * @param value
  */
-const isNil = (value: Date | DatepickerOptions) => {
+const isNil = (value: Date | ModernDatePickerOptions) => {
   return (typeof value === 'undefined') || (value === null);
 };
 
@@ -73,8 +71,8 @@ const isNil = (value: Date | DatepickerOptions) => {
     { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => NgxModerndatepickerComponent), multi: true }
   ]
 })
-export class NgxModerndatepickerComponent implements OnInit {
-@Input() options: DatepickerOptions;
+export class NgxModerndatepickerComponent implements OnInit, OnChanges {
+  @Input() options: ModernDatePickerOptions;
 
   /**
    * Disable datepicker's input
@@ -146,7 +144,7 @@ export class NgxModerndatepickerComponent implements OnInit {
     this.onChangeCallback(this.innerValue);
   }
 
-  constructor(private elementRef: ElementRef) {
+  constructor(private elementRef : ElementRef) {
     this.scrollOptions = {
       barBackground: '#DFE3E9',
       gridBackground: '#FFFFFF',
@@ -483,7 +481,6 @@ export class NgxModerndatepickerComponent implements OnInit {
     if (!this.isOpened) {
       return;
     }
-
     const input = this.elementRef.nativeElement.querySelector('.ngx-moderndatepicker-input');
 
     if (input == null) {
@@ -493,8 +490,7 @@ export class NgxModerndatepickerComponent implements OnInit {
     if (e.target === input || input.contains(<any>e.target)) {
       return;
     }
-
-    const container = this.elementRef.nativeElement.querySelector('.ngx-moderndatepicker-calendar-container');
+    const container = document.querySelector('.ngx-moderndatepicker-calendar-container');
     if (container && container !== e.target && !container.contains(<any>e.target) && !(<any>e.target).classList.contains('year-unit') && !(<any>e.target).classList.contains('month-unit')) {
       this.close();
     }
