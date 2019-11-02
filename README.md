@@ -1,4 +1,4 @@
-# ng2-datepicker
+# ngx-moderndatepicker
 
 Angular 6+ Simple and interactive calender datepicker component
 
@@ -15,7 +15,7 @@ npm install ngx-moderndatepicker --save
 ```ts
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModernDatepickerModule } from 'ng2-datepicker';
+import { NgModernDatepickerModule } from 'ngx-moderndatepicker';
 
 @NgModule({
   imports: [
@@ -42,7 +42,7 @@ export class AppModule {}
 
 ## Options
 ```ts
-import { ModernDatePickerOptions } from 'ng2-datepicker';
+import { ModernDatePickerOptions } from 'ngx-moderndatepicker';
 import * as frLocale from 'date-fns/locale/fr';
 
 options: ModernDatePickerOptions = {
