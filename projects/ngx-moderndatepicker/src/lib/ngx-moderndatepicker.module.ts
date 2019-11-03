@@ -8,10 +8,7 @@ import { NgxModerndatepickerComponent } from './ngx-moderndatepicker.component';
 
 @NgModule({
   declarations: [NgxModerndatepickerComponent],
-  imports: [
-   CommonModule,
-   FormsModule
-  ],
+  imports: [CommonModule,FormsModule],
   exports: [NgxModerndatepickerComponent]
 })
 export class NgxModerndatepickerModule { }

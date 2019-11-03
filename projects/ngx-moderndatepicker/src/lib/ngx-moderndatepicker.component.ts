@@ -107,7 +107,6 @@ export class NgxModerndatepickerComponent implements OnInit, OnChanges {
   monthNames: Array<any>;
   dayNamesFormat: string;
   monthNamesFormat: string;
-  scrollOptions: any;
   days: {
     date: Date;
     day: number;
@@ -144,17 +143,7 @@ export class NgxModerndatepickerComponent implements OnInit, OnChanges {
     this.onChangeCallback(this.innerValue);
   }
 
-  constructor(private elementRef : ElementRef) {
-    this.scrollOptions = {
-      barBackground: '#DFE3E9',
-      gridBackground: '#FFFFFF',
-      barBorderRadius: '3',
-      gridBorderRadius: '3',
-      barWidth: '6',
-      gridWidth: '6',
-      barMargin: '0',
-      gridMargin: '0'
-    };
+  constructor() {
   }
 
   ngOnInit() {
@@ -481,7 +470,7 @@ export class NgxModerndatepickerComponent implements OnInit, OnChanges {
     if (!this.isOpened) {
       return;
     }
-    const input = this.elementRef.nativeElement.querySelector('.ngx-moderndatepicker-input');
+    const input = document.querySelector('.ngx-moderndatepicker-input');
 
     if (input == null) {
       return;
