@@ -5,7 +5,7 @@
   <div class="ngx-moderndatepicker-calendar-container ngx-moderndatepicker-position-{{position}}" *ngIf="isOpened">
     <div class="topbar-container">
       <div class="main-calendar-selection-year">
-        <svg width="14px" height="14px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        <svg width="15px" height="15px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
   	       viewBox="0 0 489.6 489.6" style="enable-background:new 0 0 489.6 489.6;" xml:space="preserve"
           (click)="view === 'year' && prevYear()">
           <g>
@@ -19,7 +19,7 @@
           </g>
         </svg>
         <span class="topbar-title" (click)="toggleView(); initYears();">{{ barTitle }}</span>
-        <svg width="14px" height="14px" viewBox="0 0 6 10" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        <svg width="15px" height="15px" viewBox="0 0 6 10" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
   	       viewBox="0 0 489.6 489.6" style="enable-background:new 0 0 489.6 489.6;" xml:space="preserve"
           (click)="view === 'year' && nextYear()">
           <g>
@@ -41,7 +41,7 @@
       <div class="main-calendar-month-names">
         <div class="month-name-unit" *ngFor="let month of monthNames; let index = index" (click)="month.isSelectable && selectMonth(index)">
           <span class="month-unit"
-            [ngClass]="{ 'is-this-month': month.isThisMonth, 'is-selected': month.isSelected, 'is-disabled': !month.isSelectable }">
+            [ngClass]="{ 'is-this-month': month.isThisMonth,  'is-disabled': !month.isSelectable ,'is-selected': month.isSelected}">
             {{ month.name }}
           </span>
         </div>
@@ -49,7 +49,7 @@
       <div class="main-calender-days-container">
         <div class="main-calendar-days">
           <div class="day-unit" *ngFor="let day of days; let i = index;" >
-            <span [ngClass]="{ 'is-prev-month': !day.inThisMonth, 'is-today': day.isToday, 'is-selected': day.isSelected, 'is-disabled': !day.isSelectable, 'is-weekend': day.isWeekend , 'is-holiday' : day.isHoliday}"
+            <span [ngClass]="{ 'is-prev-month': !day.inThisMonth, 'is-today': day.isToday,  'is-disabled': !day.isSelectable, 'is-weekend': day.isWeekend , 'is-holiday' : day.isHoliday, 'is-selected': day.isSelected}"
               (click)="day.isSelectable && setDate(i)">
               {{ day.day }}
             </span>

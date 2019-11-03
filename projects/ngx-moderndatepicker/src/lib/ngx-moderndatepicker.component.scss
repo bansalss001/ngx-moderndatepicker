@@ -59,6 +59,7 @@ $grey-background: #e0e0e0;
       user-select: none;
       .main-calendar-selection-year {
         display: flex;
+        align-items: center;
         width: 108px;
         min-width: 108px;
       }
@@ -68,10 +69,10 @@ $grey-background: #e0e0e0;
         display: flex;
         align-items: center;
         font-size: 12px;
-        padding: 0px 5px;
+        padding: 0px 0 0 5px;
         .day-name-unit {
-          width: calc(100% / 7) !important;
-          height: 30px !important;
+          width: calc(100% / 7);
+          height: 30px;
           text-transform: uppercase;
           text-align: center;
           line-height: 30px;
@@ -113,15 +114,16 @@ $grey-background: #e0e0e0;
          .month-name-unit {
             width: 45px;
             height: 30px;
+            color: black;
             text-align: center;
             border-radius: 5px;
             line-height: 30px;
             cursor: pointer;
             span {
-              width: 35px !important;
+              width: 35px;
               padding: 2.5px 7px;
               border-radius: 15%;
-              height: 25px !important;
+              height: 25px;
               line-height: 25px;
               text-align: center;
             }
@@ -129,10 +131,7 @@ $grey-background: #e0e0e0;
               border: 2px solid $color;
               margin: -2px;
             }
-            span.is-selected {
-              background: $color;
-              color: $white;
-            }
+            
             span.is-disabled {
               cursor: not-allowed;
               color: $text-secondary;
@@ -140,6 +139,10 @@ $grey-background: #e0e0e0;
               :hover {
                 background: transparent;
                }
+            }
+            span.is-selected {
+              background: $color;
+              color: $white;
             }
           }
       }
@@ -151,20 +154,19 @@ $grey-background: #e0e0e0;
         overflow: auto;
 
         .day-unit, .year-unit {
-          width: calc(100% / 8) !important;
-          height: 30px !important;
+          height: 30px ;
           display: inline-flex;
           float: left;
-          padding: 1px;
+          width: calc(100% / 7);
           align-items: center;
           justify-content: center;
           cursor: pointer;
           user-select: none;
           color: $text;
           span {
-            width: 28px !important;
+            width: 28px;
             border-radius: 15%;
-            height: 20px !important;
+            height: 20px;
             line-height: 20px;
             text-align: center;
           }
@@ -176,12 +178,13 @@ $grey-background: #e0e0e0;
             border: 2px solid $color;
             margin: -2px;
           }
+         
+          span.is-weekend , span.is-holiday {
+            background: $grey-background;
+          }
           span.is-selected {
             background: $color;
             color: $white;
-          }
-          span.is-weekend , span.is-holiday {
-            background: $grey-background;
           }
           span.is-disabled {
             cursor: not-allowed;

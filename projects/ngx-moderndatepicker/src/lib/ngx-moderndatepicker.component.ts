@@ -185,7 +185,7 @@ export class NgxModerndatepickerComponent implements OnInit, OnChanges {
     this.barTitleFormat = this.options && this.options.barTitleFormat || 'YYYY';
     this.dayNamesFormat = this.options && this.options.dayNamesFormat || 'ddd';
     this.monthNamesFormat = this.options && this.options.monthNamesFormat || 'MMM';
-    this.barTitleIfEmpty = this.options && this.options.barTitleIfEmpty || 'Click to select a date';
+    this.barTitleIfEmpty = this.options && this.options.barTitleIfEmpty || (new Date().getFullYear()).toString();
     this.firstCalendarDay = this.options && this.options.firstCalendarDay || 0;
     this.locale = this.options && { locale: this.options.locale } || {};
     this.placeholder = this.options && this.options.placeholder || '';
