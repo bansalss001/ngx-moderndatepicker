@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 
-import { NgxModerndatepickerComponent } from './ngx-moderndatepicker.component';
+import { NgxModerndatepickerComponent } from '../component/ngx-moderndatepicker.component';
 
 
 @NgModule({
