@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, HostListener, forwardRef, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, HostListener, forwardRef, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 import { NG_VALUE_ACCESSOR , ControlValueAccessor} from '@angular/forms';
 import {
   startOfMonth,
@@ -64,6 +64,7 @@ const isNil = (value: Date | ModernDatePickerOptions) => {
   selector: 'ngx-moderndatepicker',
   templateUrl: 'ngx-moderndatepicker.component.html',
   styleUrls: ['ngx-moderndatepicker.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     { provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => NgxModerndatepickerComponent), multi: true }
   ]
@@ -151,7 +152,7 @@ export class NgxModerndatepickerComponent implements OnInit, OnChanges, ControlV
     this.initDayNames();
     this.initYears();
     this.initMonthName();
-
+    this.init();
     // Check if 'position' property is correct
     if (this.positions.indexOf(this.position) === -1) {
       throw new TypeError(`ng-moderndatepicker: invalid position property value '${this.position}' (expected: ${this.positions.join(', ')})`);
@@ -159,13 +160,11 @@ export class NgxModerndatepickerComponent implements OnInit, OnChanges, ControlV
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if ('options' in changes) {
       this.setOptions();
       this.initDayNames();
       this.init();
       this.initYears();
       this.initMonthName();
-    }
   }
 
   get defaultFieldId(): string {
@@ -194,19 +193,17 @@ export class NgxModerndatepickerComponent implements OnInit, OnChanges, ControlV
   }
 
   nextYear(): void {
-    this.date = addYears(this.date, 1);
-    this.barTitle = format(this.date, this.barTitleFormat, this.locale);
-    this.init();
-    this.initMonthName();
-
+      this.date = addYears(this.date, 1);
+      this.barTitle = format(this.date, this.barTitleFormat, this.locale);
+      this.init();
+      this.initMonthName();
   }
 
   prevYear(): void {
-    this.date = subYears(this.date, 1);
-    this.barTitle = format(this.date, this.barTitleFormat, this.locale);
-    this.init();
-    this.initMonthName();
-
+      this.date = subYears(this.date, 1);
+      this.barTitle = format(this.date, this.barTitleFormat, this.locale);
+      this.init();
+      this.initMonthName();
   }
 
   setDate(i: number): void {
@@ -219,6 +216,7 @@ export class NgxModerndatepickerComponent implements OnInit, OnChanges, ControlV
   setYear(i: number): void {
     this.date = setYear(this.date, this.years[i].year);
     this.init();
+    this.initMonthName();
     this.view = 'year';
   }
 
@@ -316,7 +314,7 @@ export class NgxModerndatepickerComponent implements OnInit, OnChanges, ControlV
       this.barTitle = format(start, this.barTitleFormat, this.locale);
     } else {
       this.displayValue = '';
-      this.barTitle = this.useEmptyBarTitle ? this.barTitleIfEmpty : format(start, this.barTitleFormat, this.locale);
+      this.barTitle = this.useEmptyBarTitle ? this.barTitleIfEmpty : format(this.date, this.barTitleFormat, this.locale);
     }
   }
 
