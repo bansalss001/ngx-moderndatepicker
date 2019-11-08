@@ -1,4 +1,14 @@
-<div style="align-items: center;display: flex;flex-direction: column;">
-	<span style="padding:10px;">model value: {{ date }}</span>
-	<ngx-moderndatepicker [(ngModel)]="date" [options]="options" #datePicker></ngx-moderndatepicker>
+<div class="container">
+  <div class="columns is-multiline">
+    <div class="column is-6 is-offset-3">
+      <div class="datepicker-container">
+        model value: {{ date }}
+      </div>
+    </div>
+    <div class="column is-6 is-offset-3">
+      <div class="datepicker-container">
+        <ngx-moderndatepicker [(ngModel)]="date" [options]="options"></ngx-moderndatepicker>
+      </div>
+    </div>
+  </div>
 </div>
