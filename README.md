@@ -2,7 +2,7 @@
 
 Angular 6+ Simple and interactive calender datepicker component
 
-![ngx-moderndatepicker](https://github.com/bansalss001/ngx-moderndatepicker/blob/master/src/assets/Screenshot%202021-06-11%20at%2011.00.41%20AM.png)
+![ngx-moderndatepicker](https://github.com/bansalss001/ngx-moderndatepicker/blob/master/src/assets/Screenshot.png)
 
 ## Installation
 

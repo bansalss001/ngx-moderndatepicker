@@ -12,7 +12,9 @@ export class AppComponent {
     locale: enLocale,
     minDate: new Date('11/11/2018'),
     maxDate: new Date('11/11/2030'),
-    placeholder: 'Choose Date'
+    placeholder: 'Choose Date',
+    weekendsDay: [0,6],
+    holidayList: [new Date('07/05/2021'), new Date('07/21/2021')]
   };
   constructor() {
   }
