@@ -2,7 +2,7 @@
   <input type="text" *ngIf="!headless" class="ngx-moderndatepicker-input" [(ngModel)]="displayValue" readonly [placeholder]="placeholder"
     [ngClass]="addClass" [ngStyle]="addStyle" [id]="fieldId" [disabled]="disabled" (click)="toggle()" />
   <ng-content></ng-content>
-  <div class="ngx-moderndatepicker-calendar-container ngx-moderndatepicker-position-{{position}}" *ngIf="isOpened">
+  <div class="ngx-moderndatepicker-calendar-container ngx-moderndatepicker-position-{{position}}" [ngClass]="{ 'select-only-month-and-year': selectOnlyMonthAndYear }" *ngIf="isOpened">
     <div class="topbar-container">
       <div class="main-calendar-selection-year">
         <svg width="15px" height="15px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -33,12 +33,12 @@
           </g>
         </svg>
       </div>
-      <div class="main-calendar-day-names" *ngIf="view === 'year'">
+      <div class="main-calendar-day-names" *ngIf="view === 'year' && !selectOnlyMonthAndYear">
         <span class="day-name-unit" *ngFor="let name of dayNames">{{ name }}</span>
       </div>
     </div>
     <div class="main-calendar-container" *ngIf="view === 'year'">
-      <div class="main-calendar-month-names">
+      <div class="main-calendar-month-names" [ngClass]="{ 'select-only-month-and-year': selectOnlyMonthAndYear}">
         <div class="month-name-unit" *ngFor="let month of monthNames; let index = index" (click)="month.isSelectable && selectMonth(index)">
           <span class="month-unit"
             [ngClass]="{ 'is-this-month': month.isThisMonth,  'is-disabled': !month.isSelectable ,'is-selected': month.isSelected}">
@@ -46,7 +46,7 @@
           </span>
         </div>
       </div>
-      <div class="main-calender-days-container">
+      <div class="main-calender-days-container" *ngIf="!selectOnlyMonthAndYear">
         <div class="main-calendar-days">
           <div class="day-unit" *ngFor="let day of days; let i = index;" >
             <span [ngClass]="{ 'is-prev-month': !day.inThisMonth, 'is-today': day.isToday,  'is-disabled': !day.isSelectable, 'is-weekend': day.isWeekend , 'is-holiday' : day.isHoliday, 'is-selected': day.isSelected}"

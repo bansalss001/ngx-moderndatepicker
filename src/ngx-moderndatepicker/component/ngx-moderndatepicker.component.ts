@@ -47,6 +47,8 @@ export interface ModernDatePickerOptions {
    /** Sunday is 0 , Highlights the weekends with gray background**/
   holidayList?: Array<Date>;
   /** List of Holidays **/
+  selectOnlyMonthAndYear?: boolean;
+  //If true, the picker will show only Month and year, one such use case when selecting expiry date where it needs to show only month and year
 }
 
 // Counter for calculating the auto-incrementing field ID
@@ -124,6 +126,7 @@ export class NgxModerndatepickerComponent implements OnInit, OnChanges, ControlV
   fieldId: string;
   disabled: boolean;
   useEmptyBarTitle: boolean;
+  selectOnlyMonthAndYear: boolean;
   private onTouchedCallback: () => void = () => { };
   private onChangeCallback: (_: any) => void = () => { };
 
@@ -190,6 +193,7 @@ export class NgxModerndatepickerComponent implements OnInit, OnChanges, ControlV
     this.addClass = this.options && this.options.addClass || {};
     this.addStyle = this.options && this.options.addStyle || {};
     this.fieldId = this.options && this.options.fieldId || this.defaultFieldId;
+    this.selectOnlyMonthAndYear = this.options && this.options.selectOnlyMonthAndYear || false;
   }
 
   nextYear(): void {
@@ -222,9 +226,18 @@ export class NgxModerndatepickerComponent implements OnInit, OnChanges, ControlV
 
   selectMonth(i: number): void {
     this.date = setMonth(this.date,i);
-    this.init();
-    this.initMonthName();
-    this.view = 'year';
+    if(this.selectOnlyMonthAndYear) {
+      this.date = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0); // getting the last of the selected month of the given year
+      this.initMonthName();
+      this.view = 'year';
+      this.value = this.date;
+      this.init();
+      this.close()
+    } else {
+      this.init();
+      this.initMonthName();
+      this.view = 'year';
+    }
   }
   /**
    * Checks if specified date is in range of min and max dates
