@@ -47,8 +47,8 @@ export interface ModernDatePickerOptions {
    /** Sunday is 0 , Highlights the weekends with gray background**/
   holidayList?: Array<Date>;
   /** List of Holidays **/
-  selectOnlyMonthAndYear?: boolean;
-  //If true, the picker will show only Month and year, one such use case when selecting expiry date where it needs to show only month and year
+  views?: Array<'month' | 'date' | 'year'>;
+   //its an array of strings which can contain either of the items 'month', 'date' , 'year'
 }
 
 // Counter for calculating the auto-incrementing field ID
@@ -126,7 +126,8 @@ export class NgxModerndatepickerComponent implements OnInit, OnChanges, ControlV
   fieldId: string;
   disabled: boolean;
   useEmptyBarTitle: boolean;
-  selectOnlyMonthAndYear: boolean;
+  views: Array<'date' | 'month' | 'year'>;
+  selectablesFromPicker: object = {};
   private onTouchedCallback: () => void = () => { };
   private onChangeCallback: (_: any) => void = () => { };
 
@@ -156,6 +157,9 @@ export class NgxModerndatepickerComponent implements OnInit, OnChanges, ControlV
     this.initYears();
     this.initMonthName();
     this.init();
+    for(let i in this.views) {
+        this.selectablesFromPicker[this.views[i]] = true;
+    }
     // Check if 'position' property is correct
     if (this.positions.indexOf(this.position) === -1) {
       throw new TypeError(`ng-moderndatepicker: invalid position property value '${this.position}' (expected: ${this.positions.join(', ')})`);
@@ -193,7 +197,7 @@ export class NgxModerndatepickerComponent implements OnInit, OnChanges, ControlV
     this.addClass = this.options && this.options.addClass || {};
     this.addStyle = this.options && this.options.addStyle || {};
     this.fieldId = this.options && this.options.fieldId || this.defaultFieldId;
-    this.selectOnlyMonthAndYear = this.options && this.options.selectOnlyMonthAndYear || false;
+    this.views = this.options && this.options && this.options.views && this.options.views.length && this.options.views || ['month', 'date', 'year']; 
   }
 
   nextYear(): void {
@@ -218,15 +222,24 @@ export class NgxModerndatepickerComponent implements OnInit, OnChanges, ControlV
   }
 
   setYear(i: number): void {
-    this.date = setYear(this.date, this.years[i].year);
-    this.init();
-    this.initMonthName();
-    this.view = 'year';
+    this.date = setYear(this.date, this.years[i].year); // getting the last of the selected month of the given year
+    if(!this.selectablesFromPicker['date'] && !this.selectablesFromPicker['month']) {
+      this.initMonthName();
+      this.view = 'year';
+      this.value = this.date;
+      this.init();
+      this.close()
+    } else {
+      this.init();
+      this.initMonthName();
+      this.view = 'year';
+    }
+   
   }
 
   selectMonth(i: number): void {
     this.date = setMonth(this.date,i);
-    if(this.selectOnlyMonthAndYear) {
+    if(!this.selectablesFromPicker['date']) {
       this.date = new Date(this.date.getFullYear(), this.date.getMonth() + 1, 0); // getting the last of the selected month of the given year
       this.initMonthName();
       this.view = 'year';
