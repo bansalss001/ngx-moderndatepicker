@@ -147,6 +147,11 @@ $grey-background: #e0e0e0;
             }
           }
       }
+
+      .no-date {
+        width: 184px;
+      }
+
       .main-calendar-days, .main-calendar-years {
         padding: 15px 5px;
         width: 100%;
@@ -229,4 +234,21 @@ $grey-background: #e0e0e0;
        }
     }
   }
+
+  .no-date {
+    width: 184px;
+  }
+
+ .no-year, .no-month {
+    margin-left: 109px;
+  }
+
+  .no-month-no-year {
+    margin-left: 0px;
+  }
+
+  .no-date-no-month {
+    margin-left: 0px;
+  }
 }
+
